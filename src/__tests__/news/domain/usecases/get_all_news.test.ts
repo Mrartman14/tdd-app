@@ -1,10 +1,10 @@
 import { act } from "react-dom/test-utils";
 
-import { NewEntity } from "../../../../features/news/domain/entities/news_entity";
+import { NewsEntity } from "../../../../features/news/domain/entities/news_entity";
 import { INewsRepository } from "../../../../features/news/domain/repositories/news_repository";
 import { GetAllNews } from "../../../../features/news/domain/usecases/get_all_news";
 
-const mockData: NewEntity[] = [
+const mockData: NewsEntity[] = [
     {
         text: 'mock text1',
         title: 'mock title1',
@@ -25,7 +25,7 @@ it('gets news data', async () => {
     const repository = new MockNewsRepository();
     const usecase = new GetAllNews(repository);
 
-    let result: NewEntity[];
+    let result: NewsEntity[];
 
     jest.spyOn(repository, 'getAllNews').mockImplementation(() => {
         return Promise.resolve(mockData);
@@ -36,8 +36,10 @@ it('gets news data', async () => {
     });
 
     expect(repository.getAllNews).toHaveBeenCalledTimes(1);
-    expect(result![1].text).toBe(mockData[1].text);
-
+    result!.forEach((newsItem, index) => {
+        expect(newsItem.text).toBe(mockData[index].text);
+    });
+    
     jest.spyOn(repository, 'getAllNews').mockRestore();
 });
 
