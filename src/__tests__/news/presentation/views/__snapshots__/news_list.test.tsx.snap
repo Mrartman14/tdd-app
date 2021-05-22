@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should news list component renders well 1`] = `"test title 1test text 1test title 2test text 2"`;
+
+exports[`should news list component renders well should news list makes well snapshot 1`] = `"test title 1test text 1test title 2test text 2"`;

@@ -27,14 +27,14 @@ describe('should newscard renders well', () => {
         });
         expect(container.textContent).toContain(fakeData.title);
     });
-    
+
     it('should render a text', () => {
         act(() => {
             render(<NewsCard data={fakeData} />, container);
         });
 
         const textContainer = document.querySelector('.news-card__text');
-        expect(textContainer.textContent).toBe(fakeData.text);
+        expect(textContainer!.textContent).toBe(fakeData.text);
     });
 });
 
