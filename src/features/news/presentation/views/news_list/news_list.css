@@ -1,0 +1,3 @@
+.news-list .news-card:not(:last-child) {
+    margin-bottom: 10px;
+}

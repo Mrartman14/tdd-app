@@ -1,6 +1,5 @@
 import { NewsEntity } from "../../domain/entities/news_entity";
 import { INewsRepository } from "../../domain/repositories/news_repository";
-
 class NewsRepository implements INewsRepository {
     getAllNews() {
         // TODO: REPLACE MOCK with real API

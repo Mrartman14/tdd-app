@@ -2,24 +2,20 @@ import React from 'react';
 
 import { NewsEntity } from '../../../domain/entities/news_entity';
 
-import './newcard.css';
+import './news_card.css';
 
 interface NewCardProps {
     data: NewsEntity;
 }
 
-class NewCard extends React.PureComponent<NewCardProps> {
-    // constructor(props: NewCardProps) {
-    //     super(props);
-    // }
-
+class NewsCard extends React.PureComponent<NewCardProps> {
     render() {
         return (
-            <div className="newcard">
-                <div className="newcard__title">
+            <div className="news-card">
+                <div className="news-card__title">
                     {this.props.data.title}
                 </div>
-                <div className="newcard__text">
+                <div className="news-card__text">
                     {this.props.data.text}
                 </div>
             </div>
@@ -28,5 +24,5 @@ class NewCard extends React.PureComponent<NewCardProps> {
 }
 
 export {
-    NewCard,
+    NewsCard,
 };

@@ -3,7 +3,7 @@ import { render, unmountComponentAtNode } from "react-dom";
 import { act } from "react-dom/test-utils";
 
 import { NewsEntity } from "../../../../features/news/domain/entities/news_entity";
-import { NewCard } from "../../../../features/news/presentation/components/newcard/newcard";
+import { NewsCard } from "../../../../features/news/presentation/components/news_card/news_card";
 
 let container: Element = document.createElement('div');
 beforeEach(() => {
@@ -24,7 +24,7 @@ it("renders with or without a name", () => {
     });
 
     act(() => {
-        render(<NewCard data={mockData} />, container);
+        render(<NewsCard data={mockData} />, container);
     });
     expect(container.textContent).toContain(mockData.title);
     // toBe for exact same text
