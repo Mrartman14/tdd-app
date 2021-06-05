@@ -1,9 +1,14 @@
 import React from "react";
-import { render, unmountComponentAtNode } from "react-dom";
-import { act } from "react-dom/test-utils";
+import { render, unmountComponentAtNode } from 'react-dom';
 
-import { NewsEntity } from "../../../../features/news/domain/entities/news_entity";
-import { NewsCard } from "../../../../features/news/presentation/components/news_card/news_card";
+import { shallow, configure } from 'enzyme';
+import { act } from 'react-dom/test-utils';
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
+
+import { NewsEntity } from '../../../../features/news/domain/entities/news_entity';
+import { NewsCard } from '../../../../features/news/presentation/components/news_card/news_card';
+
+configure({ adapter: new Adapter() });
 
 const container: Element = document.createElement('div');
 const fakeData = new NewsEntity({
@@ -23,7 +28,7 @@ afterEach(() => {
 describe('should newscard renders well', () => {
     it('should render a title', () => {
         act(() => {
-            render(<NewsCard data={fakeData} />, container);
+            shallow(<NewsCard data={fakeData} />, container);
         });
         expect(container.textContent).toContain(fakeData.title);
     });
