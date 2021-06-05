@@ -34,7 +34,7 @@ describe('should newscard renders well', () => {
         });
 
         const textContainer = document.querySelector('.news-card__text');
-        expect(textContainer!.textContent).toBe(fakeData.text);
+        expect(textContainer?.textContent).toBe(fakeData.text);
     });
 });
 
