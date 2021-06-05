@@ -22,8 +22,9 @@ class MockNewsRepository implements INewsRepository {
 }
 
 it('gets news data', async () => {
-    const repository = new MockNewsRepository();
-    const usecase = new GetAllNews(repository);
+    const
+        repository = new MockNewsRepository(),
+        usecase = new GetAllNews(repository);
 
     let result: NewsEntity[];
 
@@ -39,7 +40,7 @@ it('gets news data', async () => {
     result!.forEach((newsItem, index) => {
         expect(newsItem.text).toBe(mockData[index].text);
     });
-    
+
     jest.spyOn(repository, 'getAllNews').mockRestore();
 });
 

@@ -1,45 +1,61 @@
-import React from "react";
-import { render, unmountComponentAtNode } from 'react-dom';
-
-import { shallow, configure } from 'enzyme';
-import { act } from 'react-dom/test-utils';
+import { shallow, configure, ShallowWrapper } from 'enzyme';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
+import { act } from 'react-dom/test-utils';
 
 import { NewsEntity } from '../../../../features/news/domain/entities/news_entity';
 import { NewsCard } from '../../../../features/news/presentation/components/news_card/news_card';
 
-configure({ adapter: new Adapter() });
+configure({
+    adapter: new Adapter(),
+});
 
-const container: Element = document.createElement('div');
 const fakeData = new NewsEntity({
     title: 'test title',
     text: 'test text',
 });
 
-beforeEach(() => {
-    document.body.appendChild(container);
-});
-
-afterEach(() => {
-    unmountComponentAtNode(container);
-    container.remove();
-});
+function setupComponent(props: NewsEntity) {
+    const component = shallow(<NewsCard data={props} />);
+    return component;
+}
 
 describe('should newscard renders well', () => {
-    it('should render a title', () => {
+    let component: ShallowWrapper;
+
+    beforeEach(() => {
+        component = setupComponent(fakeData);
+    });
+    
+    afterEach(() => {
+        //
+    });
+
+    it('should render a root component element', () => {
+        let rootEl: ShallowWrapper;
         act(() => {
-            shallow(<NewsCard data={fakeData} />, container);
+            rootEl = component.find('.news-card');
         });
-        expect(container.textContent).toContain(fakeData.title);
+        expect(rootEl!.length).toBe(1);
+    });
+
+    it('should render a title', () => {
+        let title: ShallowWrapper;
+        act(() => {
+            title = component.find('.news-card__title');
+        });
+        expect(title!.text()).toContain(fakeData.title);
     });
 
     it('should render a text', () => {
+        let textContainer: ShallowWrapper;
         act(() => {
-            render(<NewsCard data={fakeData} />, container);
+            textContainer = component.find('.news-card__text');
         });
+        expect(textContainer!.text()).toBe(fakeData.text);
+    });
 
-        const textContainer = document.querySelector('.news-card__text');
-        expect(textContainer?.textContent).toBe(fakeData.text);
+    it('snapshot', () => {
+        expect(component).toMatchSnapshot();
     });
 });
 

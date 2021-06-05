@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should newscard renders well snapshot 1`] = `
+<div
+  className="news-card"
+>
+  <div
+    className="news-card__title"
+  >
+    test title
+  </div>
+  <div
+    className="news-card__text"
+  >
+    test text
+  </div>
+</div>
+`;

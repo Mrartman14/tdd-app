@@ -1,5 +1,35 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`should news list component renders well 1`] = `"test title 1test text 1test title 2test text 2"`;
-
-exports[`should news list component renders well should news list makes well snapshot 1`] = `"test title 1test text 1test title 2test text 2"`;
+exports[`should news list component renders well should news list makes well snapshot 1`] = `
+<div
+  className="news-list"
+>
+  <NewsCard
+    data={
+      Object {
+        "text": "test text 1",
+        "title": "test title 1",
+      }
+    }
+    key="0"
+  />
+  <NewsCard
+    data={
+      Object {
+        "text": "test text 2",
+        "title": "test title 2",
+      }
+    }
+    key="1"
+  />
+  <NewsCard
+    data={
+      Object {
+        "text": "test text 3",
+        "title": "test title 3",
+      }
+    }
+    key="2"
+  />
+</div>
+`;
