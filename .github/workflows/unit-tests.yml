@@ -1,5 +1,4 @@
 name: 'Unit tests'
-description: 'Each test must be successful before every push/pull request to main branch'
 
 on:
   push:
