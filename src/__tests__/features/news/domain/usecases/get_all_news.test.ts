@@ -1,8 +1,8 @@
 import { act } from "react-dom/test-utils";
 
-import { NewsEntity } from "../../../../features/news/domain/entities/news_entity";
-import { INewsRepository } from "../../../../features/news/domain/repositories/news_repository";
-import { GetAllNews } from "../../../../features/news/domain/usecases/get_all_news";
+import { NewsEntity } from "../../../../../features/news/domain/entities/news_entity";
+import { INewsRepository } from "../../../../../features/news/domain/repositories/news_repository";
+import { GetAllNews } from "../../../../../features/news/domain/usecases/get_all_news";
 
 const mockData: NewsEntity[] = [
     {

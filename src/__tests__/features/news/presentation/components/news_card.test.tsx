@@ -2,8 +2,8 @@ import { shallow, configure, ShallowWrapper } from 'enzyme';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import { act } from 'react-dom/test-utils';
 
-import { NewsEntity } from '../../../../features/news/domain/entities/news_entity';
-import { NewsCard } from '../../../../features/news/presentation/components/news_card/news_card';
+import { NewsEntity } from '../../../../../features/news/domain/entities/news_entity';
+import { NewsCard } from '../../../../../features/news/presentation/components/news_card/news_card';
 
 configure({
     adapter: new Adapter(),
