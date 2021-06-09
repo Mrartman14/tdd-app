@@ -3,23 +3,23 @@ import { configure, shallow, ShallowWrapper } from 'enzyme';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import { act } from "react-dom/test-utils";
 
-import { Button, ButtonProps } from '../../../../../core/components';
+import { Input, InputProps } from '../../../../../core/components';
 
 configure({
     adapter: new Adapter(),
 });
 
-function setupComponent(props: ButtonProps = {}): ShallowWrapper {
+function setupComponent(props: InputProps = {}): ShallowWrapper {
     let component: ShallowWrapper;
 
     act(() => {
-        component = shallow(<Button {...props} />);
+        component = shallow(<Input {...props} />);
     });
 
     return component!;
 }
 
-describe('should button renders well', () => {
+describe('should input renders well', () => {
     let component: ShallowWrapper;
 
     afterEach(() => {
@@ -29,35 +29,35 @@ describe('should button renders well', () => {
         });
     });
 
-    it('should button render children', () => {
-        const childrenText = 'children text';
-        component = setupComponent({ children: childrenText });
-        expect(component.text()).toBe(childrenText);
-    });
-
     // TODO: why this is not passed?
-    // it('should button can be disabled', () => {
+    // it('should input can be disabled', () => {
     //     component = setupComponent({ disabled: true });
     //     expect(component.getElement()).toBeDisabled();
     // });
 
-    it('should onClick prop can be called', () => {
+    it('should onChange prop can be called', () => {
         const mockedOnclick = jest.fn();
-        component = setupComponent({ onClick: mockedOnclick });
+        component = setupComponent({ onChange: mockedOnclick });
 
         expect(mockedOnclick).toHaveBeenCalledTimes(0);
 
+        const changeEvent = {
+            target: {
+                value: 'test value',
+            },
+        };
+
         act(() => {
-            component.simulate('click');
+            component.simulate('change', changeEvent);
         });
 
         expect(mockedOnclick).toHaveBeenCalledTimes(1);
+        expect(mockedOnclick).toHaveBeenLastCalledWith(changeEvent);
     });
 
     it('snapshot', () => {
         component = setupComponent({
             disabled: true,
-            children: 'button text',
         });
         expect(component).toMatchSnapshot();
     });
